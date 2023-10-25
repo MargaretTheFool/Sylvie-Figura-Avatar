@@ -1,0 +1,1 @@
+return "This avatar has a multi-page system set up, you're all good to go :3"
