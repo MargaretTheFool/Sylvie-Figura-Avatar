@@ -198,7 +198,6 @@ function events.tick()
         FlightChecker1 = FlightChecker1 and cFlightAllow
         pings.cFlightSync(FlightChecker1) 
     end
-    if FlightChecker1 then models.wings2D.Body:moveTo(models.Sylvie.Body):setPos(0, -0.5, 1.25) else models.wings2D.Body:moveTo(models.wings2D):setPos() end
     local elytraWorn = player:getItem(5).id == "minecraft:elytra"
     local flying = (flyingOnly == false) or player:getPose() == "FALL_FLYING" or FlightChecker1 == true
     local WingsOnSound = sounds["minecraft:entity.allay.ambient_with_item"]
