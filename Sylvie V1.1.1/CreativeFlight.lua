@@ -77,10 +77,6 @@ function events.tick()
     if cFlightCheck then
         if cFlightCheck ~= checkConfirm then
             checkConfirm = cFlightCheck
-            models.Sylvie.LeftLeg:moveTo(models.Sylvie.Body)
-            models.Sylvie.RightLeg:moveTo(models.Sylvie.Body)
-            models.Sylvie.LeftArm:moveTo(models.Sylvie.Body)
-            models.Sylvie.RightArm:moveTo(models.Sylvie.Body)
         end
         ll = vec((-25 / (1 + horizVel:length() * 10)) - (horizVel.y * 30), 0, (7 / (1 + horizVel:length() * 15)) - (player:getVelocity().y * 10) + horizVel.x * 20)
         if ll.x ~= ll.x then
@@ -108,7 +104,7 @@ function events.tick()
             TickCheck = world.getTime()
             local cFlightMagicc1 = {}
             for i = 1, 2, 1 do
-                cFlightMagicc1[i] = particles:newParticle("minecraft:end_rod")
+                cFlightMagicc1[i] = particles:newParticle("minecraft:end_rod", player:getPos())
                     :pos(models.Sylvie.LeftLeg.left_thigh.left_knee.left_ankle.left_foot:partToWorldMatrix():apply() + vectors.rotateAroundAxis(-player:getBodyYaw(), vec(0, 0, 0), vec(0, 1, 0)) + (vec(math.random() * math.random(-1, 1),(math.random() - 0.5) * math.random(-1, 1),math.random() * math.random(-1, 1)) / 2))
                     :lifetime(10)
                     :setColor(0.85, 0.55, 0.65, 0.5)
@@ -117,7 +113,7 @@ function events.tick()
             end
             local cFlightMagicc2 = {}
             for i = 1, 2, 1 do
-                cFlightMagicc2[i] = particles:newParticle("minecraft:end_rod")
+                cFlightMagicc2[i] = particles:newParticle("minecraft:end_rod", player:getPos())
                     :pos(models.Sylvie.RightLeg.right_thigh.right_knee.right_ankle.right_foot:partToWorldMatrix():apply() + vectors.rotateAroundAxis(-player:getBodyYaw(), vec(0, 0, 0), vec(0, 1, 0)) + (vec(math.random() * math.random(-1, 1),(math.random() - 0.5) * math.random(-1, 1),math.random() * math.random(-1, 1)) / 2))
                     :lifetime(10)
                     :setColor(0.85, 0.55, 0.65, 0.5)
@@ -126,7 +122,7 @@ function events.tick()
             end
             local cFlightMagicc3 = {}
             for i = 1, 2, 1 do
-                cFlightMagicc3[i] = particles:newParticle("minecraft:end_rod")
+                cFlightMagicc3[i] = particles:newParticle("minecraft:end_rod", player:getPos())
                     :pos(models.Sylvie.RightArm.right_arm.right_elbow.right_pawbFinger1:partToWorldMatrix():apply() + vectors.rotateAroundAxis(-player:getBodyYaw(), vec(0, 0, 0), vec(0, 1, 0)) + (vec(math.random() * math.random(-1, 1),(math.random() - 0.5) * math.random(-1, 1),math.random() * math.random(-1, 1)) / 2))
                     :lifetime(10)
                     :setColor(0.85, 0.55, 0.65, 0.5)
@@ -135,7 +131,7 @@ function events.tick()
             end
             local cFlightMagicc4 = {}
             for i = 1, 2, 1 do
-                cFlightMagicc4[i] = particles:newParticle("minecraft:end_rod")
+                cFlightMagicc4[i] = particles:newParticle("minecraft:end_rod", player:getPos())
                     :pos(models.Sylvie.LeftArm.left_arm.left_elbow.left_pawbFinger1:partToWorldMatrix():apply() + vectors.rotateAroundAxis(-player:getBodyYaw(), vec(0, 0, 0), vec(0, 1, 0)) + (vec(math.random() * math.random(-1, 1),(math.random() - 0.5) * math.random(-1, 1),math.random() * math.random(-1, 1)) / 2))
                     :lifetime(10)
                     :setColor(0.85, 0.55, 0.65, 0.5)
@@ -143,6 +139,7 @@ function events.tick()
                     :gravity(0.05)
             end
         end
+        -- logTable(models.Sylvie.Body:getChildren())
         models.Sylvie.LeftLeg:rot(extraJointOffsets[1] / (1 + horizVel:length() * 10) + (vec(0, 0, 0) * horizVel:length()))
         models.Sylvie.LeftLeg.left_thigh.left_knee:rot(extraJointOffsets[2] / (1 + horizVel:length() * 10) + (vec(-64.8593, -5.5048, 5.9588) * horizVel:length()))
         models.Sylvie.LeftLeg.left_thigh.left_knee.left_ankle:rot(extraJointOffsets[3] / (1 + horizVel:length() * 10) + (vec(70.0823 ,5.2595 ,0.0308) * horizVel:length()))
